@@ -1,0 +1,28 @@
+{
+  "Person": [
+    {
+      "name": "Ivan",
+      "id": 1
+    },
+    {
+      "name": "Oleg",
+      "id": 2
+    },
+    {
+      "name": "Mihail",
+      "id": 3
+    },
+    {
+      "name": "Maria",
+      "id": 4
+    },
+    {
+      "name": "Ivan",
+      "id": 5
+    },
+    {
+      "name": "Dmitry",
+      "id": 6
+    }
+  ]
+}
