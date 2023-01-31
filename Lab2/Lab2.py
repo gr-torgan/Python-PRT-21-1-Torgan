@@ -17,18 +17,19 @@ def read(filename):
 
 class Person:
     def __init__(self):
-        self.name
-        self.id
+        self.name = choice(['Антон', "Денис", "Арсен", "Владислав", "Павел", "Сергей", "Юрий", "Аркадий", "Анна", "Инна", "Алиса", "Вероника", "Ксения"])
+        self.id = randint(1, 10000)
 
 data = {
     'Person': []
 }
 
-for i in range(50):
+for i in range(10):
     data['Person'].append(Person().__dict__)
+    write(data, 'lab2.json')
 
 n_data = read('lab2.json')
-print(n_data['Person'][49])
+print(n_data["Person"])
 g = Person()
 
 g.name = n_data['Person'][4]['name']
