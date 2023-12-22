@@ -1,14 +1,28 @@
 from pyDatalog import pyDatalog
-import random
+from random import randint
 
-pyDatalog.create_terms('X, Z, Y, Sm, div, Average, y, SumRand')
+pyDatalog.clear()
 
-(y[X] == sum_(Y, for_each=Y)) <= ((Y._in(range_(X+1))))
-print(y[888888] == Sm)
-(div[X, Y] == Z) <= (X // Y == Z)
-print(div[y[888888], 888888] == Average)
+pyDatalog.create_atoms('N, Sum')
+Sum[N] = (N == 0) & (Sum[N] == 0)
+Sum[N] = (N > 0) & (Sum[N] == Sum[N-1] + N)
 
-l = sorted([random.choice(range(888888)) for i in range(100)])
-(y['sum_rand'] == sum_(Z, for_each=Z)) <= Z.in_(l)
-print(y['sum_rand'] == SumRand)
-print("Median: ", (l[49] + l[50]) / 2)
+pyDatalog.create_atoms('Avg')
+Avg[N] = (Avg[N-1] * (N-1) + N) / N
+
+pyDatalog.create_atoms('X, Median')
+for _ in range(1000000):
+    X[randint(0, 999999)]
+
+Median[N] = (Median[X] == X) & (N == 0)
+Median[N] = (Median[X] < X) & (N == Median[N-1] + 1)
+Median[N] = (Median[X] >= X) & (N == Median[N-1])
+
+pyDatalog.create_atoms('Product')
+Product[N] = (Product[X] == X) & (N == 1)
+Product[N] = (Product[X] == Product[N-1] * X)
+
+print("Сумма ряда: ", Sum[999999])
+print("Среднее значение ряда: ", Avg[999999])
+print("Медиана случайных 1000000 чисел: ", Median[500000])
+print("Произведение случайных 1000000 чисел: ", Product[1000000])
